@@ -15,7 +15,11 @@
     "type": "git",
     "url": "git+https://github.com/HardikShreays/CodeForges.git"
   },
-  "keywords": ["execution-engine", "code-judge", "typescript"],
+  "keywords": [
+    "execution-engine",
+    "code-judge",
+    "typescript"
+  ],
   "author": "Syed Darain Qamar",
   "license": "ISC",
   "bugs": {
@@ -23,6 +27,7 @@
   },
   "homepage": "https://github.com/HardikShreays/CodeForges#readme",
   "devDependencies": {
+    "@types/jest": "^30.0.0",
     "@types/node": "^25.5.2",
     "ts-node": "^10.9.2",
     "typescript": "^6.0.2"
