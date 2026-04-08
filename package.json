@@ -1,20 +1,22 @@
 {
   "name": "codeforges",
   "version": "1.0.0",
-  "description": "",
-  "main": "index.js",
-  "directories": {
-    "test": "tests"
-  },
+  "description": "Online Code Evaluation and Judging System — Execution Engine Module",
+  "main": "dist/main.js",
   "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1"
+    "build": "tsc",
+    "start": "ts-node src/main.ts",
+    "test": "ts-node tests/run-all.ts",
+    "test:factory": "ts-node tests/factory.test.ts",
+    "test:executors": "ts-node tests/executors.test.ts",
+    "test:engine": "ts-node tests/engine.test.ts"
   },
   "repository": {
     "type": "git",
     "url": "git+https://github.com/HardikShreays/CodeForges.git"
   },
-  "keywords": [],
-  "author": "",
+  "keywords": ["execution-engine", "code-judge", "typescript"],
+  "author": "Syed Darain Qamar",
   "license": "ISC",
   "bugs": {
     "url": "https://github.com/HardikShreays/CodeForges/issues"
