@@ -7,15 +7,17 @@
 
 import { ExecutionEngine } from './execution-engine';
 import { TestCase } from './execution-engine/types';
+import { SubmissionService } from './submission-service';
 
 // ─────────────────────────────────────────────────────────
 
 const engine = new ExecutionEngine();
+const submissionService = new SubmissionService();
 
 console.log('');
 console.log('╔══════════════════════════════════════════════════════════╗');
-console.log('║         CodeForges — Execution Engine Demo               ║');
-console.log('║         Module Owner: Syed Darain Qamar                  ║');
+console.log('║         CodeForges — Submission Pipeline Demo            ║');
+console.log('║  Submission Service + Job Queue + Execution Engine       ║');
 console.log('╚══════════════════════════════════════════════════════════╝');
 console.log('');
 
@@ -27,7 +29,10 @@ const testCases: TestCase[] = [
   { id: 'TC-003', input: '0',   expectedOutput: '0' },
 ];
 
-// ── Python Submission ────────────────────────────────────
+// Register a simple echo problem in the SubmissionService
+submissionService.registerProblem('ECHO', testCases);
+
+// ── Direct Engine Demo (backwards compatible) ────────────
 
 console.log('━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━');
 console.log('  🐍 Python Submission');
@@ -119,6 +124,26 @@ const errorPy = 'x = 1/0';
 const errorResult = engine.run(errorPy, 'python', [testCases[0]!]);
 console.log(`  Status:  ${errorResult.status}`);
 console.log(`  Errors:  ${errorResult.errors.join('\n           ')}`);
+
+// ── Submission Service + Job Queue Demo ──────────────────
+
+console.log('\n━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━');
+console.log('  📥 Submission Service + Job Queue Demo');
+console.log('━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━');
+
+const submissionId = submissionService.submit({
+  problemId: 'ECHO',
+  language: 'python',
+  sourceCode: pythonCode,
+});
+
+console.log(`  Created submission: ${submissionId}`);
+console.log(`  Initial status:     ${submissionService.getStatus(submissionId)}`);
+
+submissionService.processQueue();
+
+console.log(`  Final status:       ${submissionService.getStatus(submissionId)}`);
+console.log('  Result summary:', submissionService.getResult(submissionId));
 
 // ── Supported Languages ──────────────────────────────────
 

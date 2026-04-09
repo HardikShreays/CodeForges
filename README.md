@@ -33,7 +33,7 @@ CodeForges is a system-design project that simulates a **competitive programming
 
 | Service | Description |
 |---|---|
-| **Submission Service** | Receives and queues user code submissions |
+| **Submission Service** | Receives user submissions, enqueues them to the Job Queue, exposes status & results |
 | **Execution Engine** | Runs code in isolated, sandboxed environments |
 | **Problem Management Service** | Manages problem sets and test cases |
 | **Result Processor** | Aggregates and stores evaluation results |
@@ -67,11 +67,21 @@ Submission Service ──► Job Queue
 
 ---
 
-## Module: Execution Engine
+## Modules
 
-This repository currently contains the **Execution Engine** module, owned by **Syed Darain Qamar**.
+### 1. Submission Service *(Owner: Hardik Shreyas)*
 
-### How it works
+- Accepts user submissions via a simple API boundary (currently `SubmissionService.submit()` in TypeScript).
+- Persists in-memory `SubmissionRecord`s with `QUEUED → RUNNING → COMPLETED/FAILED` states.
+- Pushes work items into an in-memory **Job Queue** to simulate horizontal scaling with workers.
+- Uses `ExecutionManager` (Singleton) to delegate execution to the core Execution Engine.
+- Exposes `getStatus(submissionId)` and `getResult(submissionId)` to poll from a UI / API layer.
+
+### 2. Execution Engine *(Owner: Syed Darain Qamar)*
+
+This module is responsible for actually running code against test cases.
+
+#### How it works
 
 1. `ExecutionEngine.run(code, language, testCases)` is called
 2. `LanguageExecutorFactory` resolves the correct executor for the given language
