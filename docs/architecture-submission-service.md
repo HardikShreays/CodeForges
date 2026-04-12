@@ -20,6 +20,15 @@
    - Updates submission status to `COMPLETED` or `FAILED`.
 4. Clients can poll `getStatus(id)` and `getResult(id)` from the Submission Service.
 
+### UML Diagram
+#### ER Diagram
+![Submission Service UML](diagrams/er_diagram.jpg)
+#### Use Case Diagram
+![Submission Service UML](diagrams/use-case.png)
+#### Sequential Diagram
+![Submission Service UML](diagrams/sequential.png)
+
+
 ### Class & Pattern Mapping
 
 - `SubmissionService`
