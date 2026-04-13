@@ -21,6 +21,9 @@ async function runTests(): Promise<void> {
     console.log('\n▶ Running Engine Tests...');
     await import('./engine.test');
 
+    console.log('\n▶ Running Problem Management Tests...');
+    await import('./problem-management.test');
+
     console.log('\n══════════════════════════════════════════════════════════');
     console.log('  ✅  ALL TEST SUITES PASSED');
     console.log('══════════════════════════════════════════════════════════\n');

@@ -6,10 +6,13 @@
   "scripts": {
     "build": "tsc",
     "start": "ts-node src/main.ts",
+    "dev": "ts-node src/api/server.ts",
     "test": "ts-node tests/run-all.ts",
     "test:factory": "ts-node tests/factory.test.ts",
     "test:executors": "ts-node tests/executors.test.ts",
-    "test:engine": "ts-node tests/engine.test.ts"
+    "test:engine": "ts-node tests/engine.test.ts",
+    "test:problems": "ts-node tests/problem-management.test.ts",
+    "test:api": "ts-node tests/api.test.ts"
   },
   "repository": {
     "type": "git",
@@ -27,9 +30,13 @@
   },
   "homepage": "https://github.com/HardikShreays/CodeForges#readme",
   "devDependencies": {
+    "@types/express": "^5.0.6",
     "@types/jest": "^30.0.0",
     "@types/node": "^25.5.2",
     "ts-node": "^10.9.2",
     "typescript": "^6.0.2"
+  },
+  "dependencies": {
+    "express": "^5.2.1"
   }
 }
