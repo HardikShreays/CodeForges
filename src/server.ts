@@ -1,15 +1,15 @@
 /**
- * @file src/api/server.ts
+ * @file src/server.ts
  * @description Express server setup for the CodeForges API.
  *
  * Mounts all route modules under /api and starts
  * the server on the configured port (default 3000).
  *
- * Run with:  npx ts-node src/api/server.ts
+ * Run with:  npx ts-node src/server.ts
  */
 
 import express from 'express';
-import { problemRoutes, submissionRoutes, executionRoutes, evaluateRoutes } from './routes';
+import { problemRoutes, submissionRoutes, executionRoutes, evaluateRoutes } from './api/routes';
 
 const app = express();
 const PORT = Number(process.env.PORT) || 3000;

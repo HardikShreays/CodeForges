@@ -7,7 +7,7 @@
  */
 
 import http from 'http';
-import app from '../src/api/server';
+import app from '../src/server';
 
 // ─────────────────────────────────────────────────────────
 //  Test helpers

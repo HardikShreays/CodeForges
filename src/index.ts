@@ -2,7 +2,7 @@
  * @file src/index.ts
  * @description Deployment entrypoint for the CodeForges API server.
  *
- * Importing server boots the Express app.
+ * Keeping this file as the host-detected entrypoint.
  */
 
-import './api/server';
+import './server';
